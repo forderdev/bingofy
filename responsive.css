@@ -1,8 +1,81 @@
-/* Bingofy responsive layout: width + height aware */
+/* Bingofy UI v3: neutral palette, crisp demo, width + height aware */
+:root{
+  --bg:#08090b;
+  --panel:rgba(18,19,22,.82);
+  --line:rgba(255,255,255,.10);
+  --text:#f4f4f5;
+  --muted:#9799a0;
+  --accent:#d4d4d8;
+  --shadow:0 22px 70px rgba(0,0,0,.42);
+}
+html{background:var(--bg)}
+body{
+  background:
+    radial-gradient(circle at 16% -8%,rgba(255,255,255,.075),transparent 30%),
+    radial-gradient(circle at 88% 8%,rgba(161,161,170,.055),transparent 28%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
 nav{width:calc(100% - 24px)}
-.demo{width:min(100%,500px);justify-self:end}
+.glass{background:var(--panel);border-color:var(--line);box-shadow:var(--shadow)}
+.mark{background:linear-gradient(135deg,#fafafa,#a1a1aa);color:#09090b}
+.btn.primary{background:#ededf0;color:#09090b;border-color:rgba(255,255,255,.75)}
+.btn.primary:hover{background:#fff}
+.eyebrow{color:#d4d4d8}
+.demo{
+  width:min(100%,500px);
+  justify-self:end;
+  transform:none!important;
+  filter:none!important;
+  backface-visibility:hidden;
+  background:rgba(17,18,21,.92);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.mini{transform:none;filter:none}
+.mini span{
+  font-size:11px;
+  font-weight:650;
+  color:#b5b6bc;
+  text-rendering:geometricPrecision;
+  -webkit-font-smoothing:antialiased;
+}
+.mini span.on{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.28);color:#fff}
 .workspace{width:100%}
 .board-frame{margin-inline:auto}
+.cell{
+  font-size:clamp(13px,1.15vw,16px);
+  font-weight:760;
+  line-height:1.22;
+  letter-spacing:-.01em;
+}
+.cell textarea{
+  width:100%;
+  height:auto;
+  min-height:1.25em;
+  max-height:calc(100% - 14px);
+  field-sizing:content;
+  align-self:center;
+  resize:none;
+  overflow:hidden;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#fff;
+  text-align:center;
+  padding:0 5px;
+  margin:0;
+  font:inherit;
+  font-size:inherit;
+  font-weight:inherit;
+  line-height:1.22;
+  white-space:pre-wrap;
+}
+.check{background:#f4f4f5;color:#09090b}
+.winner{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.2)}
+.swatch{box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.swatch.active{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.16)}
 
 @media (min-width:901px){
   .workspace{grid-template-columns:minmax(0,1fr) clamp(280px,27vw,330px);gap:clamp(12px,1.3vw,18px);padding:clamp(16px,3.5vh,38px) clamp(12px,1.5vw,20px) 42px;align-items:start}
@@ -20,14 +93,14 @@ nav{width:calc(100% - 24px)}
   .hero{padding:28px 20px 26px;gap:clamp(28px,4vw,48px)}
   .hero h1{font-size:clamp(44px,8.5vh,62px);margin:10px 0 14px;line-height:.93}
   .hero p{font-size:14px;line-height:1.5;margin-block:0}.hero .actions{margin-top:18px}
-  .demo{max-width:min(400px,52vh);padding:13px;border-radius:21px}.mini{gap:5px}.mini span{border-radius:8px;font-size:9px;padding:3px}
+  .demo{max-width:min(410px,54vh);padding:13px;border-radius:21px}.mini{gap:5px}.mini span{border-radius:8px;font-size:10px;padding:3px}
   .section{padding-top:18px}
   .workspace{padding-top:14px;padding-bottom:22px}
   .board-head,.board-frame{width:min(100%,calc(100dvh - 150px),700px)}
   .board-head{margin-bottom:8px;align-items:center}.board-title h1{font-size:22px}
   .board-title p{margin-top:3px;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52vw}
   .board-frame{padding:8px;border-radius:19px}.grid{gap:5px}
-  .cell{border-radius:11px;padding:6px;font-size:clamp(9px,1vw,12px)}
+  .cell{border-radius:11px;padding:6px;font-size:clamp(13px,1.08vw,15px)}
   .check{right:4px;top:4px;width:18px;height:18px;border-radius:6px;font-size:11px}
   .panel{top:60px;max-height:calc(100dvh - 72px);padding:10px;border-radius:16px}
   .panel h3{margin:1px 0 7px}.field{gap:3px;margin-bottom:7px}
@@ -39,27 +112,30 @@ nav{width:calc(100% - 24px)}
 @media (max-width:1100px) and (min-width:901px){
   .workspace{grid-template-columns:minmax(0,1fr) 286px}.panel{padding:11px}
   .board-head,.board-frame{width:min(100%,calc(100dvh - 170px),680px)}
+  .cell{font-size:clamp(12px,1.2vw,14px)}
 }
 
 @media (max-width:900px){
   nav{width:auto}.demo{justify-self:center;width:min(100%,540px)}
   .workspace{max-width:760px;margin-inline:auto}.board-frame{width:min(100%,720px)}.panel{width:min(100%,720px);margin-inline:auto}
+  .cell{font-size:clamp(12px,2vw,15px)}
 }
 
 @media (max-width:600px){
   body{font-size:13px}.hero{padding-inline:12px}.hero h1{font-size:clamp(44px,15vw,56px)}
   .hero .actions{flex-wrap:wrap}.hero .actions .btn{flex:1 1 140px}.section{padding-inline:12px}.workspace{padding-inline:6px}
   .board-head{gap:8px}.board-title{min-width:0}.board-title p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70vw}
-  .cell textarea{padding:8px 2px}.toolbar{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr 1fr}footer{padding-inline:12px}
+  .cell{font-size:clamp(10px,3vw,13px)}.cell textarea{padding:0 3px}.toolbar{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr 1fr}footer{padding-inline:12px}
 }
 
 @media (max-width:420px){
   nav{padding:8px 9px}.brand{gap:7px;font-size:16px}.mark{width:29px;height:29px}.nav-actions{gap:5px}
   .btn,.icon{padding-inline:10px;min-height:36px}.board-frame{padding:5px}.grid{gap:3px}
-  .cell{border-radius:8px;padding:3px;font-size:clamp(7px,2.55vw,10px)}.check{width:17px;height:17px;right:3px;top:3px}.panel{padding:11px}
+  .cell{border-radius:8px;padding:3px;font-size:clamp(9px,3vw,11px)}.check{width:17px;height:17px;right:3px;top:3px}.panel{padding:11px}
 }
 
 @media (max-height:560px) and (min-width:700px){
-  .hero{padding-top:18px;padding-bottom:18px}.hero h1{font-size:42px}.hero p{font-size:13px}.demo{max-width:300px}
+  .hero{padding-top:18px;padding-bottom:18px}.hero h1{font-size:42px}.hero p{font-size:13px}.demo{max-width:310px}
   .board-head,.board-frame{width:min(100%,calc(100dvh - 125px),520px)}.board-title p,.hint{display:none}
+  .cell{font-size:clamp(11px,1.15vw,13px)}
 }
