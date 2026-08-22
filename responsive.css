@@ -1,0 +1,65 @@
+/* Bingofy responsive layout: width + height aware */
+nav{width:calc(100% - 24px)}
+.demo{width:min(100%,500px);justify-self:end}
+.workspace{width:100%}
+.board-frame{margin-inline:auto}
+
+@media (min-width:901px){
+  .workspace{grid-template-columns:minmax(0,1fr) clamp(280px,27vw,330px);gap:clamp(12px,1.3vw,18px);padding:clamp(16px,3.5vh,38px) clamp(12px,1.5vw,20px) 42px;align-items:start}
+  .board-area{min-width:0;display:flex;flex-direction:column;align-items:center}
+  .board-head,.board-frame{width:min(100%,calc(100dvh - 180px),760px)}
+  .board-head{margin:0 auto 12px}
+  .panel{top:76px;max-height:calc(100dvh - 92px);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent}
+  .panel::-webkit-scrollbar{width:6px}.panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:99px}
+}
+
+@media (min-width:901px) and (max-height:820px){
+  nav{top:6px;margin-top:6px;padding:7px 10px;border-radius:15px}
+  .mark{width:28px;height:28px;border-radius:9px}.brand{font-size:16px}
+  .btn,.icon{min-height:34px;border-radius:10px;padding-inline:11px}.icon{width:34px;padding:0}
+  .hero{padding:28px 20px 26px;gap:clamp(28px,4vw,48px)}
+  .hero h1{font-size:clamp(44px,8.5vh,62px);margin:10px 0 14px;line-height:.93}
+  .hero p{font-size:14px;line-height:1.5;margin-block:0}.hero .actions{margin-top:18px}
+  .demo{max-width:min(400px,52vh);padding:13px;border-radius:21px}.mini{gap:5px}.mini span{border-radius:8px;font-size:9px;padding:3px}
+  .section{padding-top:18px}
+  .workspace{padding-top:14px;padding-bottom:22px}
+  .board-head,.board-frame{width:min(100%,calc(100dvh - 150px),700px)}
+  .board-head{margin-bottom:8px;align-items:center}.board-title h1{font-size:22px}
+  .board-title p{margin-top:3px;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52vw}
+  .board-frame{padding:8px;border-radius:19px}.grid{gap:5px}
+  .cell{border-radius:11px;padding:6px;font-size:clamp(9px,1vw,12px)}
+  .check{right:4px;top:4px;width:18px;height:18px;border-radius:6px;font-size:11px}
+  .panel{top:60px;max-height:calc(100dvh - 72px);padding:10px;border-radius:16px}
+  .panel h3{margin:1px 0 7px}.field{gap:3px;margin-bottom:7px}
+  .field input,.field textarea,.field select{padding:7px 8px;border-radius:8px}.field textarea{min-height:42px;max-height:58px}
+  .toolbar{gap:5px;margin:8px 0}.toolbar button{height:32px;border-radius:8px;font-size:11px}.split{gap:6px}
+  .accent-row{gap:5px}.swatch{width:22px;height:22px;border-radius:7px}.hint{font-size:10px;line-height:1.35;margin-top:9px}
+}
+
+@media (max-width:1100px) and (min-width:901px){
+  .workspace{grid-template-columns:minmax(0,1fr) 286px}.panel{padding:11px}
+  .board-head,.board-frame{width:min(100%,calc(100dvh - 170px),680px)}
+}
+
+@media (max-width:900px){
+  nav{width:auto}.demo{justify-self:center;width:min(100%,540px)}
+  .workspace{max-width:760px;margin-inline:auto}.board-frame{width:min(100%,720px)}.panel{width:min(100%,720px);margin-inline:auto}
+}
+
+@media (max-width:600px){
+  body{font-size:13px}.hero{padding-inline:12px}.hero h1{font-size:clamp(44px,15vw,56px)}
+  .hero .actions{flex-wrap:wrap}.hero .actions .btn{flex:1 1 140px}.section{padding-inline:12px}.workspace{padding-inline:6px}
+  .board-head{gap:8px}.board-title{min-width:0}.board-title p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70vw}
+  .cell textarea{padding:8px 2px}.toolbar{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr 1fr}footer{padding-inline:12px}
+}
+
+@media (max-width:420px){
+  nav{padding:8px 9px}.brand{gap:7px;font-size:16px}.mark{width:29px;height:29px}.nav-actions{gap:5px}
+  .btn,.icon{padding-inline:10px;min-height:36px}.board-frame{padding:5px}.grid{gap:3px}
+  .cell{border-radius:8px;padding:3px;font-size:clamp(7px,2.55vw,10px)}.check{width:17px;height:17px;right:3px;top:3px}.panel{padding:11px}
+}
+
+@media (max-height:560px) and (min-width:700px){
+  .hero{padding-top:18px;padding-bottom:18px}.hero h1{font-size:42px}.hero p{font-size:13px}.demo{max-width:300px}
+  .board-head,.board-frame{width:min(100%,calc(100dvh - 125px),520px)}.board-title p,.hint{display:none}
+}
