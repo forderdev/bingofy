@@ -9,8 +9,9 @@ Promise.all(['site/part_00','site/part_01','site/part_02'].map(p=>fetch(p,{cache
     .replace("accents=['#9d7cff','#6ee7f9','#7bf1a8','#ff8ab3','#ffba6b','#f5f7ff']","accents=['#fafafa','#e4e4e7','#c7c7cc','#a1a1aa','#71717a','#3f3f46']")
     .replace("accent:'#9d7cff'","accent:'#e4e4e7'")
     .replaceAll('<textarea maxlength="180">','<textarea rows="1" maxlength="180">')
-    .replace("function renderCard(){if(!card)return;document.documentElement.style.setProperty('--accent',card.accent);","function renderCard(){if(!card)return;if(['#9d7cff','#6ee7f9','#7bf1a8','#ff8ab3','#ffba6b','#f5f7ff'].includes(card.accent))card.accent='#e4e4e7';document.documentElement.style.setProperty('--accent',card.accent);");
-  html=html.replace('</head>','<link rel="stylesheet" href="responsive.css?v=3"></head>');
+    .replace("function renderCard(){if(!card)return;document.documentElement.style.setProperty('--accent',card.accent);","function renderCard(){if(!card)return;if(['#9d7cff','#6ee7f9','#7bf1a8','#ff8ab3','#ffba6b','#f5f7ff'].includes(card.accent))card.accent='#e4e4e7';document.documentElement.style.setProperty('--accent',card.accent);")
+    .replace("let g=$('#grid');g.style.gridTemplateColumns=`repeat(${card.size},1fr)`;g.innerHTML='';","let g=$('#grid');g.dataset.size=String(card.size);g.style.gridTemplateColumns=`repeat(${card.size},1fr)`;g.innerHTML='';");
+  html=html.replace('</head>','<link rel="stylesheet" href="responsive.css?v=4"></head>');
   document.open();document.write(html);document.close();
 }).catch(err=>{document.getElementById('boot').textContent='Bingofy failed to load: '+err.message;console.error(err)})
 </script>
