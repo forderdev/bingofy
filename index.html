@@ -2,6 +2,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bingofy</title>
-<body style="margin:0;background:#080a10;color:#fff;font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh"><div id="boot">Loading Bingofy…</div><script>
-Promise.all(['site/part_00','site/part_01','site/part_02'].map(p=>fetch(p,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(p+' '+r.status);return r.text()}))).then(parts=>{const html=parts.join('').replace('</head>','<link rel="stylesheet" href="responsive.css?v=2"></head>');document.open();document.write(html);document.close()}).catch(err=>{document.getElementById('boot').textContent='Bingofy failed to load: '+err.message;console.error(err)})
+<body style="margin:0;background:#08090b;color:#fff;font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh"><div id="boot">Loading Bingofy…</div><script>
+Promise.all(['site/part_00','site/part_01','site/part_02'].map(p=>fetch(p,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(p+' '+r.status);return r.text()}))).then(parts=>{
+  let html=parts.join('');
+  html=html
+    .replace("accents=['#9d7cff','#6ee7f9','#7bf1a8','#ff8ab3','#ffba6b','#f5f7ff']","accents=['#fafafa','#e4e4e7','#c7c7cc','#a1a1aa','#71717a','#3f3f46']")
+    .replace("accent:'#9d7cff'","accent:'#e4e4e7'")
+    .replaceAll('<textarea maxlength="180">','<textarea rows="1" maxlength="180">')
+    .replace("function renderCard(){if(!card)return;document.documentElement.style.setProperty('--accent',card.accent);","function renderCard(){if(!card)return;if(['#9d7cff','#6ee7f9','#7bf1a8','#ff8ab3','#ffba6b','#f5f7ff'].includes(card.accent))card.accent='#e4e4e7';document.documentElement.style.setProperty('--accent',card.accent);");
+  html=html.replace('</head>','<link rel="stylesheet" href="responsive.css?v=3"></head>');
+  document.open();document.write(html);document.close();
+}).catch(err=>{document.getElementById('boot').textContent='Bingofy failed to load: '+err.message;console.error(err)})
 </script>
